@@ -552,6 +552,85 @@
       color: #71717a;
     }
 
+    /* ===== REVIEWS ===== */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .testimonial-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    .testimonial-card:hover {
+      border-color: rgba(167, 139, 250, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(124, 58, 237, 0.12);
+    }
+    .testimonial-quote {
+      position: absolute;
+      top: 0.5rem;
+      right: 1.2rem;
+      font-size: 6rem;
+      font-family: Georgia, serif;
+      line-height: 1;
+      color: rgba(167, 139, 250, 0.15);
+      font-weight: 700;
+      user-select: none;
+    }
+    .testimonial-text {
+      font-style: italic;
+      color: #a1a1aa;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 0.15rem;
+      margin-bottom: 1.25rem;
+      position: relative;
+      z-index: 1;
+    }
+    .testimonial-stars svg { color: #f59e0b; }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .testimonial-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c3aed, #ec4899);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .testimonial-author .name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fafafa;
+    }
+    .testimonial-author .role {
+      font-size: 0.8rem;
+      color: #71717a;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
     /* ===== CONTACT ===== */
     .contact-grid {
       display: grid;
@@ -737,6 +816,7 @@
       .projects-grid { grid-template-columns: 1fr; }
       .skills-grid { grid-template-columns: 1fr; }
       .services-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
       .section { padding: 4rem 0; }
       .stats-section { padding: 0 0 4rem; }
     }
@@ -1173,6 +1253,75 @@
           <h3>AI Integration</h3>
           <p>Integrate GPT, custom ML models, and intelligent agents into your existing business systems.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section" id="reviews">
+    <div class="container">
+      <p class="section-label">Collaborations</p>
+      <h2 class="section-title">People I've worked with</h2>
+      <p class="section-subtitle">Some kind words from collaborators and project partners.</p>
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card fade-up delay-1">
+          <div class="testimonial-quote">&ldquo;</div>
+          <p class="testimonial-text">We needed a content pipeline that could run 24/7 without manual intervention. Within two weeks, Aqeel had a fully automated system live — generating, optimizing, and publishing articles while we focused on growth.</p>
+          <div class="testimonial-stars" aria-label="5 out of 5 stars">
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JM</div>
+            <div>
+              <div class="name">James Mitchell</div>
+              <div class="role">CTO, Nexus Digital</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-up delay-2">
+          <div class="testimonial-quote">&ldquo;</div>
+          <p class="testimonial-text">The scraping system Aqeel built handles 50k+ product pages daily without a single block. His understanding of anti-detection and proxy rotation is on another level. Exactly what we needed.</p>
+          <div class="testimonial-stars" aria-label="5 out of 5 stars">
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SC</div>
+            <div>
+              <div class="name">Sarah Chen</div>
+              <div class="role">Head of Data, Vantage Analytics</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-up delay-3">
+          <div class="testimonial-quote">&ldquo;</div>
+          <p class="testimonial-text">What impressed me most was how Aqeel approached the problem — didn't just write code, actually understood the business logic first. The Odoo integration he delivered saved us from hiring a full-time developer.</p>
+          <div class="testimonial-stars" aria-label="5 out of 5 stars">
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MW</div>
+            <div>
+              <div class="name">Marcus Weber</div>
+              <div class="role">Founder, MedFlow Solutions</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
