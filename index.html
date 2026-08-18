@@ -3,84 +3,986 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Portfolio</title>
+  <title>Muhammad Aqeel — AI Automation Engineer & Full-Stack Developer</title>
+  <meta name="description" content="Portfolio of Muhammad Aqeel — AI Automation Engineer, Full-Stack Developer, and Business Automation Specialist from Pakistan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f3f4f6;
-      color: #111827;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0a0a0f;
+      color: #e4e4e7;
+      line-height: 1.7;
+      overflow-x: hidden;
     }
-    header {
-      background: #2563eb;
-      color: white;
-      padding: 2rem 1.5rem;
-      text-align: center;
+    ::selection { background: #6d28d9; color: #fff; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ===== UTILITIES ===== */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 6rem 0; }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: #a78bfa;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 0.5rem;
     }
-    main {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
-    }
-    .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
-      margin-bottom: 1.5rem;
-      padding: 1.5rem;
-    }
-    .project-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .project-list li {
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      color: #fafafa;
       margin-bottom: 1rem;
-      border-bottom: 1px solid #e5e7eb;
-      padding-bottom: 1rem;
+      line-height: 1.2;
     }
-    footer {
-      text-align: center;
-      color: #6b7280;
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: #a1a1aa;
+      max-width: 600px;
+      margin-bottom: 3rem;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #a78bfa 0%, #6d28d9 50%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #7c3aed, #6d28d9);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(109, 40, 217, 0.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(109, 40, 217, 0.6);
+    }
+    .btn-outline {
+      background: transparent;
+      color: #a78bfa;
+      border: 2px solid #a78bfa;
+    }
+    .btn-outline:hover {
+      background: #a78bfa;
+      color: #0a0a0f;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
       padding: 1rem 0;
+      transition: all 0.3s ease;
     }
-    a {
-      color: #2563eb;
-      text-decoration: none;
+    .navbar.scrolled {
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+    }
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #fafafa;
+    }
+    .nav-logo span { color: #a78bfa; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.9rem;
+      color: #a1a1aa;
+      transition: color 0.3s;
+      font-weight: 500;
+    }
+    .nav-links a:hover { color: #a78bfa; }
+    .nav-toggle { display: none; background: none; border: none; color: #fafafa; font-size: 1.5rem; cursor: pointer; }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(109, 40, 217, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(236, 72, 153, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 10s ease-in-out infinite reverse;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(109, 40, 217, 0.15);
+      border: 1px solid rgba(109, 40, 217, 0.3);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      color: #a78bfa;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+    .hero-badge .dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      color: #fafafa;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #a1a1aa;
+      max-width: 550px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat h3 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fafafa;
+    }
+    .stat p {
+      font-size: 0.85rem;
+      color: #71717a;
+      margin-bottom: 0;
+    }
+
+    /* ===== ABOUT ===== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-image {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-image .placeholder-avatar {
+      font-size: 8rem;
+      opacity: 0.3;
+    }
+    .about-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      border: 1px solid rgba(167, 139, 250, 0.2);
+    }
+    .about-text h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fafafa;
+      margin-bottom: 1rem;
+    }
+    .about-text p {
+      color: #a1a1aa;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+    .about-tags span {
+      padding: 0.4rem 1rem;
+      background: rgba(109, 40, 217, 0.1);
+      border: 1px solid rgba(109, 40, 217, 0.2);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      color: #a78bfa;
+      font-weight: 500;
+    }
+
+    /* ===== SKILLS ===== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+    .skill-card:hover {
+      border-color: rgba(167, 139, 250, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .skill-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .skill-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fafafa;
+      margin-bottom: 0.5rem;
+    }
+    .skill-card p {
+      font-size: 0.9rem;
+      color: #71717a;
+      line-height: 1.6;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+    .skill-tags span {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 6px;
+      color: #a1a1aa;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ===== PROJECTS ===== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .project-card:hover {
+      border-color: rgba(167, 139, 250, 0.3);
+      transform: translateY(-4px);
+    }
+    .project-header {
+      padding: 1.5rem 1.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .project-header .icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+    .project-links { display: flex; gap: 0.5rem; }
+    .project-links a {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.05);
+      color: #71717a;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .project-links a:hover { background: rgba(167, 139, 250, 0.2); color: #a78bfa; }
+    .project-body { padding: 1.2rem 1.5rem 1.5rem; }
+    .project-body h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fafafa;
+      margin-bottom: 0.5rem;
+    }
+    .project-body p {
+      font-size: 0.9rem;
+      color: #71717a;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .project-tech span {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      background: rgba(109, 40, 217, 0.1);
+      border-radius: 6px;
+      color: #a78bfa;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ===== SERVICES ===== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      padding: 2rem;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.3s;
+      text-align: center;
+    }
+    .service-card:hover {
+      border-color: rgba(167, 139, 250, 0.3);
+      transform: translateY(-4px);
+    }
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .service-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fafafa;
+      margin-bottom: 0.5rem;
+    }
+    .service-card p {
+      font-size: 0.9rem;
+      color: #71717a;
+    }
+
+    /* ===== CONTACT ===== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+    .contact-info h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fafafa;
+      margin-bottom: 1rem;
+    }
+    .contact-info p {
+      color: #a1a1aa;
+      margin-bottom: 2rem;
+    }
+    .contact-links { list-style: none; }
+    .contact-links li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .contact-links .icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(109, 40, 217, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-links .text { color: #a1a1aa; font-size: 0.95rem; }
+    .contact-links .label { color: #71717a; font-size: 0.8rem; display: block; }
+    .contact-form {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: #a1a1aa;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      color: #fafafa;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.3s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #6d28d9;
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 2rem 0;
+      text-align: center;
+    }
+    .footer p {
+      color: #52525b;
+      font-size: 0.85rem;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .footer-links a {
+      color: #71717a;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: #a78bfa; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 15, 0.95);
+        backdrop-filter: blur(20px);
+        padding: 1.5rem;
+        border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+      }
+      .nav-toggle { display: block; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero-stats { gap: 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .about-image { max-width: 300px; margin: 0 auto; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .section { padding: 4rem 0; }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>My Portfolio</h1>
-    <p>Example page built with HTML and CSS.</p>
-  </header>
-  <main>
-    <section class="card">
-      <h2>About Me</h2>
-      <p>Hello! I am a web developer building modern, responsive websites. This is a simple portfolio example page created in <strong>index.html</strong>.</p>
-    </section>
-    <section class="card">
-      <h2>Projects</h2>
-      <ul class="project-list">
-        <li>
-          <strong>Project One</strong>
-          <p>A landing page built with HTML, CSS, and JavaScript.</p>
-        </li>
-        <li>
-          <strong>Project Two</strong>
-          <p>A personal blog template with responsive styling.</p>
-        </li>
-        <li>
-          <strong>Project Three</strong>
-          <p>A portfolio website showing work and contact details.</p>
-        </li>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo">A<span>.</span>qeel</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
-    </section>
-  </main>
-  <footer>
-    <p>Made with HTML &amp; CSS. Open `index.html` in your browser to view.</p>
+      <button class="nav-toggle" id="navToggle">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Available for freelance work
+        </div>
+        <h1>I build <span class="gradient-text">AI-powered</span><br/>automation systems</h1>
+        <p>Full-stack developer and AI automation engineer from Pakistan. I create intelligent business systems, web scrapers, content pipelines, and end-to-end automation solutions.</p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">View My Work &rarr;</a>
+          <a href="#contact" class="btn btn-outline">Get In Touch</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <h3>50+</h3>
+            <p>Projects Built</p>
+          </div>
+          <div class="stat">
+            <h3>3+</h3>
+            <p>Years Experience</p>
+          </div>
+          <div class="stat">
+            <h3>10+</h3>
+            <p>Automations Live</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image fade-up">
+          <div class="placeholder-avatar">👨‍💻</div>
+        </div>
+        <div class="about-text fade-up">
+          <p class="section-label">About Me</p>
+          <h2 class="section-title">Turning ideas into<br/>living systems</h2>
+          <h3>Muhammad Aqeel</h3>
+          <p>I'm a full-stack developer and AI automation engineer based in Pakistan. I specialize in building intelligent systems that automate businesses — from content pipelines and web scrapers to complete SaaS platforms.</p>
+          <p>My stack spans Python, Node.js, Docker, n8n, Playwright, Odoo, and cloud infrastructure. I don't just write code — I architect systems that run autonomously.</p>
+          <div class="about-tags">
+            <span>Python</span>
+            <span>Node.js</span>
+            <span>Docker</span>
+            <span>n8n</span>
+            <span>Playwright</span>
+            <span>Odoo ERP</span>
+            <span>AI/ML</span>
+            <span>Cloud</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="container">
+      <p class="section-label">Skills</p>
+      <h2 class="section-title">What I work with</h2>
+      <p class="section-subtitle">Technologies and tools I use to build production-grade systems.</p>
+      <div class="skills-grid">
+        <div class="skill-card fade-up">
+          <div class="skill-icon" style="background: rgba(59,130,246,0.1);">🤖</div>
+          <h3>AI & Automation</h3>
+          <p>Intelligent agents, content pipelines, and autonomous business systems powered by LLMs and custom ML models.</p>
+          <div class="skill-tags">
+            <span>OpenAI</span>
+            <span>LangChain</span>
+            <span>n8n</span>
+            <span>Custom Agents</span>
+          </div>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-icon" style="background: rgba(16,185,129,0.1);">🌐</div>
+          <h3>Full-Stack Development</h3>
+          <p>Modern web applications with clean architecture, responsive design, and production-ready deployments.</p>
+          <div class="skill-tags">
+            <span>React</span>
+            <span>Node.js</span>
+            <span>Python</span>
+            <span>PostgreSQL</span>
+          </div>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-icon" style="background: rgba(245,158,11,0.1);">🔧</div>
+          <h3>DevOps & Infrastructure</h3>
+          <p>Docker containers, cloud deployments, CI/CD pipelines, and server management on Oracle, AWS, and Cloudflare.</p>
+          <div class="skill-tags">
+            <span>Docker</span>
+            <span>Oracle VPS</span>
+            <span>Cloudflare</span>
+            <span>Linux</span>
+          </div>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-icon" style="background: rgba(236,72,153,0.1);">🕷️</div>
+          <h3>Web Scraping & Data</h3>
+          <p>Advanced scraping with Playwright, anti-detection, proxy rotation, and structured data extraction at scale.</p>
+          <div class="skill-tags">
+            <span>Playwright</span>
+            <span>Puppeteer</span>
+            <span>Selenium</span>
+            <span>BeautifulSoup</span>
+          </div>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-icon" style="background: rgba(139,92,246,0.1);">📱</div>
+          <h3>Bot Development</h3>
+          <p>Telegram bots, WhatsApp integrations, social media automation, and content distribution systems.</p>
+          <div class="skill-tags">
+            <span>Telegram API</span>
+            <span>WhatsApp</span>
+            <span>Blogger API</span>
+            <span>Facebook</span>
+          </div>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-icon" style="background: rgba(239,68,68,0.1);">🏢</div>
+          <h3>ERP & Business Systems</h3>
+          <p>Odoo customization, business process automation, inventory management, and enterprise integrations.</p>
+          <div class="skill-tags">
+            <span>Odoo</span>
+            <span>ERPNext</span>
+            <span>REST APIs</span>
+            <span>Custom Modules</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="container">
+      <p class="section-label">Projects</p>
+      <h2 class="section-title">Featured work</h2>
+      <p class="section-subtitle">A selection of production systems I've built and deployed.</p>
+      <div class="projects-grid">
+
+        <div class="project-card fade-up">
+          <div class="project-header">
+            <div class="icon" style="background: rgba(109,40,217,0.15);">⚡</div>
+            <div class="project-links">
+              <a href="https://github.com/mraqeelpkorg-glitch" target="_blank" title="GitHub">&#128279;</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>Agentic Playwright</h3>
+            <p>AI-powered content automation pipeline — generates, optimizes, and publishes SEO content to Blogger via n8n workflows, with Odoo ERP integration and Facebook distribution.</p>
+            <div class="project-tech">
+              <span>Python</span>
+              <span>n8n</span>
+              <span>Playwright</span>
+              <span>Odoo</span>
+              <span>Docker</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card fade-up">
+          <div class="project-header">
+            <div class="icon" style="background: rgba(236,72,153,0.15);">🤖</div>
+            <div class="project-links">
+              <a href="https://github.com/mraqeelpkorg-glitch" target="_blank" title="GitHub">&#128279;</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>AI Content Machine</h3>
+            <p>Automated blog content generation system with SEO optimization, keyword research, pillar content strategy, and multi-platform publishing.</p>
+            <div class="project-tech">
+              <span>Python</span>
+              <span>OpenAI</span>
+              <span>Blogger API</span>
+              <span>n8n</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card fade-up">
+          <div class="project-header">
+            <div class="icon" style="background: rgba(16,185,129,0.15);">🛡️</div>
+            <div class="project-links">
+              <a href="https://github.com/mraqeelpkorg-glitch" target="_blank" title="GitHub">&#128279;</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>DAST Platform</h3>
+            <p>Dynamic Application Security Testing platform with automated vulnerability scanning, report generation, and real-time monitoring dashboards.</p>
+            <div class="project-tech">
+              <span>Docker</span>
+              <span>Node.js</span>
+              <span>Security</span>
+              <span>Dashboard</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card fade-up">
+          <div class="project-header">
+            <div class="icon" style="background: rgba(245,158,11,0.15);">🛒</div>
+            <div class="project-links">
+              <a href="https://github.com/mraqeelpkorg-glitch" target="_blank" title="GitHub">&#128279;</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>GrocerApp Clone</h3>
+            <p>Full grocery delivery application clone with real-time inventory, order management, and admin dashboard — built as a production-ready prototype.</p>
+            <div class="project-tech">
+              <span>Node.js</span>
+              <span>React</span>
+              <span>MongoDB</span>
+              <span>Docker</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card fade-up">
+          <div class="project-header">
+            <div class="icon" style="background: rgba(59,130,246,0.15);">📊</div>
+            <div class="project-links">
+              <a href="https://github.com/mraqeelpkorg-glitch" target="_blank" title="GitHub">&#128279;</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>Pharma Scraper & Price Audit</h3>
+            <p>Medicine price comparison system scraping multiple pharmacy platforms, auditing pricing data, and generating market reports for pharmaceutical analysis.</p>
+            <div class="project-tech">
+              <span>Python</span>
+              <span>Playwright</span>
+              <span>CSV</span>
+              <span>Data Analysis</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card fade-up">
+          <div class="project-header">
+            <div class="icon" style="background: rgba(139,92,246,0.15);">📺</div>
+            <div class="project-links">
+              <a href="https://github.com/mraqeelpkorg-glitch" target="_blank" title="GitHub">&#128279;</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3>YouTube Automation</h3>
+            <p>End-to-end YouTube content automation — video research, script generation, thumbnail creation, and automated publishing pipeline.</p>
+            <div class="project-tech">
+              <span>Python</span>
+              <span>YouTube API</span>
+              <span>AI</span>
+              <span>Automation</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="container">
+      <p class="section-label">Services</p>
+      <h2 class="section-title">What I can do for you</h2>
+      <p class="section-subtitle">From idea to deployment — I build systems that work.</p>
+      <div class="services-grid">
+        <div class="service-card fade-up">
+          <div class="service-icon">⚡</div>
+          <h3>Business Automation</h3>
+          <p>Automate repetitive tasks with AI agents, n8n workflows, and custom scripts that run 24/7.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">🌐</div>
+          <h3>Web Development</h3>
+          <p>Modern, responsive websites and web applications built with clean code and deployed on the cloud.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">🕷️</div>
+          <h3>Data Scraping</h3>
+          <p>Reliable web scraping solutions with anti-detection, proxy support, and structured data output.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">🤖</div>
+          <h3>AI Integration</h3>
+          <p>Integrate GPT, custom ML models, and intelligent agents into your existing business systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info fade-up">
+          <p class="section-label">Contact</p>
+          <h2 class="section-title">Let's work together</h2>
+          <p>Have a project in mind? Need automation for your business? Let's talk.</p>
+          <ul class="contact-links">
+            <li>
+              <div class="icon-box">📧</div>
+              <div>
+                <span class="label">Email</span>
+                <span class="text">mraqeel.pk.org@gmail.com</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-box">💬</div>
+              <div>
+                <span class="label">Telegram</span>
+                <span class="text">@mraqeelpk</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-box">🔗</div>
+              <div>
+                <span class="label">GitHub</span>
+                <span class="text">github.com/mraqeelpkorg-glitch</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-box">📍</div>
+              <div>
+                <span class="label">Location</span>
+                <span class="text">Pakistan</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="contact-form fade-up">
+          <form id="contactForm" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="John Doe" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Your Email</label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="Project inquiry" />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Send Message &rarr;</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Muhammad Aqeel. Built with passion & caffeine.</p>
+      <div class="footer-links">
+        <a href="https://github.com/mraqeelpkorg-glitch" target="_blank">GitHub</a>
+        <a href="https://t.me/mraqeelpk" target="_blank">Telegram</a>
+        <a href="mailto:mraqeel.pk.org@gmail.com">Email</a>
+      </div>
+    </div>
   </footer>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('active'));
+    });
+
+    // Fade-up on scroll
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    fadeEls.forEach(el => observer.observe(el));
+
+    // Contact form handler (simple mailto fallback)
+    function handleSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const subject = document.getElementById('subject').value || 'Portfolio Contact';
+      const message = document.getElementById('message').value;
+      const mailto = `mailto:mraqeel.pk.org@gmail.com?subject=${encodeURIComponent(subject + ' — from ' + name)}&body=${encodeURIComponent('From: ' + name + ' (' + email + ')\n\n' + message)}`;
+      window.location.href = mailto;
+    }
+  </script>
+
 </body>
 </html>
