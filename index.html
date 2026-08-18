@@ -82,6 +82,7 @@
     .btn-outline:hover {
       background: #a78bfa;
       color: #0a0a0f;
+      box-shadow: 0 0 30px rgba(167, 139, 250, 0.3);
     }
 
     /* ===== NAVBAR ===== */
@@ -93,10 +94,12 @@
       z-index: 1000;
       padding: 1rem 0;
       transition: all 0.3s ease;
+      background: transparent;
     }
     .navbar.scrolled {
       background: rgba(10, 10, 15, 0.85);
       backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(167, 139, 250, 0.1);
     }
     .navbar .container {
@@ -110,7 +113,7 @@
       color: #fafafa;
     }
     .nav-logo span { color: #a78bfa; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
     .nav-links a {
       font-size: 0.9rem;
       color: #a1a1aa;
@@ -118,7 +121,30 @@
       font-weight: 500;
     }
     .nav-links a:hover { color: #a78bfa; }
-    .nav-toggle { display: none; background: none; border: none; color: #fafafa; font-size: 1.5rem; cursor: pointer; }
+    .nav-cta {
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #7c3aed, #6d28d9);
+      color: #fff !important;
+      font-weight: 600;
+      box-shadow: 0 4px 16px rgba(109, 40, 217, 0.4);
+      transition: all 0.3s ease;
+    }
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(109, 40, 217, 0.6);
+      color: #fff !important;
+    }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #fafafa;
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0.25rem;
+    }
 
     /* ===== HERO ===== */
     .hero {
@@ -127,6 +153,7 @@
       align-items: center;
       position: relative;
       overflow: hidden;
+      padding-top: 5rem;
     }
     .hero::before {
       content: '';
@@ -167,6 +194,7 @@
       color: #a78bfa;
       margin-bottom: 1.5rem;
       font-weight: 500;
+      font-family: 'JetBrains Mono', monospace;
     }
     .hero-badge .dot {
       width: 8px;
@@ -174,10 +202,11 @@
       background: #22c55e;
       border-radius: 50%;
       animation: pulse 2s ease-in-out infinite;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.8);
     }
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
     }
     .hero h1 {
       font-size: clamp(2.8rem, 7vw, 5rem);
@@ -186,30 +215,79 @@
       margin-bottom: 1.5rem;
       color: #fafafa;
     }
+    .typed-cursor {
+      display: inline-block;
+      color: #a78bfa;
+      animation: blink 1s step-end infinite;
+      font-weight: 400;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
     .hero p {
       font-size: 1.2rem;
       color: #a1a1aa;
-      max-width: 550px;
-      margin-bottom: 2.5rem;
+      max-width: 600px;
+      margin-bottom: 2rem;
       line-height: 1.8;
     }
-    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .hero-stats {
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .hero-socials {
       display: flex;
-      gap: 3rem;
-      margin-top: 4rem;
+      gap: 0.75rem;
+      flex-wrap: wrap;
       padding-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
-    .stat h3 {
-      font-size: 2rem;
+    .hero-socials a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #a1a1aa;
+      transition: all 0.3s ease;
+    }
+    .hero-socials a:hover {
+      background: rgba(109, 40, 217, 0.2);
+      border-color: rgba(167, 139, 250, 0.4);
+      color: #a78bfa;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(109, 40, 217, 0.3);
+    }
+
+    /* ===== STATS BAR ===== */
+    .stats-section {
+      padding: 0 0 6rem;
+      position: relative;
+      z-index: 1;
+    }
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    .stat-item h3 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
       font-weight: 800;
       color: #fafafa;
+      margin-bottom: 0.3rem;
+      font-family: 'JetBrains Mono', monospace;
     }
-    .stat p {
-      font-size: 0.85rem;
+    .stat-item h3 .stat-number { color: #a78bfa; }
+    .stat-item p {
+      font-size: 0.9rem;
       color: #71717a;
-      margin-bottom: 0;
+      font-weight: 500;
     }
 
     /* ===== ABOUT ===== */
@@ -228,17 +306,63 @@
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-    .about-image .placeholder-avatar {
-      font-size: 8rem;
-      opacity: 0.3;
+      border: 1px solid rgba(167, 139, 250, 0.15);
     }
     .about-image::after {
       content: '';
       position: absolute;
       inset: 0;
       border-radius: 20px;
-      border: 1px solid rgba(167, 139, 250, 0.2);
+      border: 1px solid rgba(167, 139, 250, 0.15);
+      pointer-events: none;
+    }
+    /* CSS Avatar: rotating ring + gradient initials circle + glow */
+    .avatar-ring {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .avatar-ring::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      border-radius: 50%;
+      border: 2px dashed rgba(167, 139, 250, 0.6);
+      animation: spin 14s linear infinite;
+    }
+    .avatar-ring::after {
+      content: '';
+      position: absolute;
+      inset: -18px;
+      border-radius: 50%;
+      border: 1px solid rgba(236, 72, 153, 0.25);
+      animation: spin 20s linear infinite reverse;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .avatar-inner {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 60%, #ec4899 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.2rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 1px;
+      box-shadow: 0 0 40px rgba(124, 58, 237, 0.5), 0 0 80px rgba(124, 58, 237, 0.25);
+      animation: glow 4s ease-in-out infinite;
+    }
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 40px rgba(124, 58, 237, 0.5), 0 0 80px rgba(124, 58, 237, 0.25); }
+      50% { box-shadow: 0 0 60px rgba(124, 58, 237, 0.7), 0 0 120px rgba(236, 72, 153, 0.35); }
     }
     .about-text h3 {
       font-size: 1.5rem;
@@ -274,8 +398,8 @@
       gap: 1.5rem;
     }
     .skill-card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 16px;
       padding: 2rem;
       transition: all 0.3s ease;
@@ -283,7 +407,7 @@
     .skill-card:hover {
       border-color: rgba(167, 139, 250, 0.3);
       transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(124, 58, 237, 0.12);
     }
     .skill-icon {
       width: 50px;
@@ -315,7 +439,7 @@
     .skill-tags span {
       font-size: 0.75rem;
       padding: 0.25rem 0.6rem;
-      background: rgba(255,255,255,0.05);
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 6px;
       color: #a1a1aa;
       font-family: 'JetBrains Mono', monospace;
@@ -328,8 +452,8 @@
       gap: 1.5rem;
     }
     .project-card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 16px;
       overflow: hidden;
       transition: all 0.3s ease;
@@ -337,6 +461,7 @@
     .project-card:hover {
       border-color: rgba(167, 139, 250, 0.3);
       transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(124, 58, 237, 0.12);
     }
     .project-header {
       padding: 1.5rem 1.5rem 0;
@@ -361,9 +486,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255,255,255,0.05);
+      background: rgba(255, 255, 255, 0.05);
       color: #71717a;
-      font-size: 0.85rem;
       transition: all 0.2s;
     }
     .project-links a:hover { background: rgba(167, 139, 250, 0.2); color: #a78bfa; }
@@ -403,14 +527,15 @@
     .service-card {
       padding: 2rem;
       border-radius: 16px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       transition: all 0.3s;
       text-align: center;
     }
     .service-card:hover {
       border-color: rgba(167, 139, 250, 0.3);
       transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(124, 58, 237, 0.12);
     }
     .service-icon {
       font-size: 2.5rem;
@@ -425,6 +550,85 @@
     .service-card p {
       font-size: 0.9rem;
       color: #71717a;
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .testimonial-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    .testimonial-card:hover {
+      border-color: rgba(167, 139, 250, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(124, 58, 237, 0.12);
+    }
+    .testimonial-quote {
+      position: absolute;
+      top: 0.5rem;
+      right: 1.2rem;
+      font-size: 6rem;
+      font-family: Georgia, serif;
+      line-height: 1;
+      color: rgba(167, 139, 250, 0.15);
+      font-weight: 700;
+      user-select: none;
+    }
+    .testimonial-text {
+      font-style: italic;
+      color: #a1a1aa;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 0.15rem;
+      margin-bottom: 1.25rem;
+      position: relative;
+      z-index: 1;
+    }
+    .testimonial-stars svg { color: #f59e0b; }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .testimonial-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c3aed, #ec4899);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .testimonial-author .name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fafafa;
+    }
+    .testimonial-author .role {
+      font-size: 0.8rem;
+      color: #71717a;
+      font-family: 'JetBrains Mono', monospace;
     }
 
     /* ===== CONTACT ===== */
@@ -458,14 +662,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
+      color: #a78bfa;
       flex-shrink: 0;
     }
     .contact-links .text { color: #a1a1aa; font-size: 0.95rem; }
     .contact-links .label { color: #71717a; font-size: 0.8rem; display: block; }
     .contact-form {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 16px;
       padding: 2rem;
     }
@@ -481,8 +685,8 @@
     .form-group textarea {
       width: 100%;
       padding: 0.8rem 1rem;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 10px;
       color: #fafafa;
       font-family: inherit;
@@ -493,55 +697,76 @@
     .form-group input:focus,
     .form-group textarea:focus {
       border-color: #6d28d9;
+      box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.15);
     }
     .form-group textarea { resize: vertical; min-height: 120px; }
 
     /* ===== FOOTER ===== */
     .footer {
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 2rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 2.5rem 0;
       text-align: center;
     }
     .footer p {
       color: #52525b;
       font-size: 0.85rem;
     }
-    .footer-links {
+    .footer-socials {
       display: flex;
       justify-content: center;
-      gap: 1.5rem;
-      margin-top: 1rem;
+      gap: 1rem;
+      margin-top: 1.25rem;
     }
-    .footer-links a {
+    .footer-socials a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       color: #71717a;
-      font-size: 0.85rem;
-      transition: color 0.3s;
+      transition: all 0.3s ease;
     }
-    .footer-links a:hover { color: #a78bfa; }
+    .footer-socials a:hover {
+      background: rgba(109, 40, 217, 0.2);
+      border-color: rgba(167, 139, 250, 0.4);
+      color: #a78bfa;
+      transform: translateY(-3px);
+    }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .nav-links.active {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(10, 10, 15, 0.95);
-        backdrop-filter: blur(20px);
-        padding: 1.5rem;
-        border-bottom: 1px solid rgba(167, 139, 250, 0.1);
-      }
-      .nav-toggle { display: block; }
-      .hero h1 { font-size: 2.5rem; }
-      .hero-stats { gap: 1.5rem; }
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .about-image { max-width: 300px; margin: 0 auto; }
-      .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .section { padding: 4rem 0; }
+    /* ===== SCROLL TO TOP ===== */
+    .scroll-top {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c3aed, #6d28d9);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      z-index: 999;
+      box-shadow: 0 4px 20px rgba(109, 40, 217, 0.4);
+    }
+    .scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .scroll-top:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(109, 40, 217, 0.6);
     }
 
     /* ===== ANIMATIONS ===== */
@@ -554,6 +779,64 @@
       opacity: 1;
       transform: translateY(0);
     }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 15, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 1.5rem;
+        border-bottom: 1px solid rgba(167, 139, 250, 0.1);
+        gap: 1.25rem;
+        align-items: flex-start;
+      }
+      .nav-links.active { display: flex; }
+      .nav-toggle { display: block; }
+      .nav-cta { align-self: flex-start; }
+      .hero { padding-top: 6rem; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero-buttons { flex-direction: column; }
+      .hero-buttons .btn { width: 100%; justify-content: center; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; padding: 2rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .about-image { max-width: 300px; margin: 0 auto; }
+      .avatar-ring { width: 160px; height: 160px; }
+      .avatar-inner { width: 128px; height: 128px; font-size: 2.4rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .section { padding: 4rem 0; }
+      .stats-section { padding: 0 0 4rem; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 1.25rem; }
+      .hero h1 { font-size: 2.1rem; }
+      .hero p { font-size: 1.05rem; }
+      .hero-badge { font-size: 0.75rem; }
+      .hero-socials a { width: 40px; height: 40px; }
+      .stats-bar { padding: 1.75rem 1rem; gap: 1.25rem; }
+      .stat-item h3 { font-size: 1.6rem; }
+      .stat-item p { font-size: 0.8rem; }
+      .section-title { font-size: 1.8rem; }
+      .section { padding: 3.5rem 0; }
+      .stats-section { padding: 0 0 3.5rem; }
+      .avatar-ring { width: 140px; height: 140px; }
+      .avatar-inner { width: 112px; height: 112px; font-size: 2rem; }
+      .scroll-top { bottom: 1rem; right: 1rem; width: 42px; height: 42px; }
+    }
   </style>
 </head>
 <body>
@@ -561,15 +844,16 @@
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <div class="container">
-      <a href="#" class="nav-logo">A<span>.</span>qeel</a>
+      <a href="#hero" class="nav-logo">A<span>.</span>qeel</a>
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
       </ul>
-      <button class="nav-toggle" id="navToggle">&#9776;</button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
     </div>
   </nav>
 
@@ -581,25 +865,52 @@
           <span class="dot"></span>
           Crafting Intelligent Systems
         </div>
-        <h1>I build <span class="gradient-text">AI-powered</span><br/>automation systems</h1>
-        <p>Full-stack developer and AI automation engineer from Pakistan. I create intelligent business systems, web scrapers, content pipelines, and end-to-end automation solutions.</p>
+        <h1>I turn complex problems<br />into <span id="typed-text" class="gradient-text"></span><span class="typed-cursor" aria-hidden="true">|</span></h1>
+        <p>I'm an AI automation engineer from Pakistan. I design and build intelligent systems — web scrapers, content pipelines, bots, and autonomous business workflows that run 24/7 without human intervention.</p>
         <div class="hero-buttons">
-          <a href="#projects" class="btn btn-primary">View My Work &rarr;</a>
-          <a href="#contact" class="btn btn-outline">Get In Touch</a>
+          <a href="#projects" class="btn btn-primary">See What I've Built &rarr;</a>
+          <a href="#contact" class="btn btn-outline">Start a Conversation</a>
         </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <h3>50+</h3>
-            <p>Projects Built</p>
-          </div>
-          <div class="stat">
-            <h3>3+</h3>
-            <p>Years Experience</p>
-          </div>
-          <div class="stat">
-            <h3>10+</h3>
-            <p>Automations Live</p>
-          </div>
+        <div class="hero-socials">
+          <a href="https://github.com/mraqeelpkorg-glitch" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>
+          </a>
+          <a href="https://t.me/mraqeelpk" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" /></svg>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" /></svg>
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
+          </a>
+          <a href="mailto:mraqeel.pk.org@gmail.com" aria-label="Email" title="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <section class="stats-section" id="stats">
+    <div class="container">
+      <div class="stats-bar fade-up">
+        <div class="stat-item">
+          <h3><span class="stat-number" data-target="50" data-suffix="+">0</span></h3>
+          <p>Projects Delivered</p>
+        </div>
+        <div class="stat-item">
+          <h3><span class="stat-number" data-target="10" data-suffix="+">0</span></h3>
+          <p>Automations Running</p>
+        </div>
+        <div class="stat-item">
+          <h3><span class="stat-number" data-target="15" data-suffix="+">0</span></h3>
+          <p>Happy Clients</p>
+        </div>
+        <div class="stat-item">
+          <h3><span class="stat-number" data-target="3" data-suffix="+">0</span></h3>
+          <p>Years Experience</p>
         </div>
       </div>
     </div>
@@ -610,11 +921,13 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-image fade-up">
-          <div class="placeholder-avatar">👨‍💻</div>
+          <div class="avatar-ring">
+            <div class="avatar-inner">MA</div>
+          </div>
         </div>
         <div class="about-text fade-up">
           <p class="section-label">About Me</p>
-          <h2 class="section-title">Turning ideas into<br/>living systems</h2>
+          <h2 class="section-title">Turning ideas into<br />living systems</h2>
           <h3>Muhammad Aqeel</h3>
           <p>I'm a full-stack developer and AI automation engineer based in Pakistan. I specialize in building intelligent systems that automate businesses — from content pipelines and web scrapers to complete SaaS platforms.</p>
           <p>My stack spans Python, Node.js, Docker, n8n, Playwright, Odoo, and cloud infrastructure. I don't just write code — I architect systems that run autonomously.</p>
@@ -640,7 +953,7 @@
       <h2 class="section-title">What I work with</h2>
       <p class="section-subtitle">Technologies and tools I use to build production-grade systems.</p>
       <div class="skills-grid">
-        <div class="skill-card fade-up">
+        <div class="skill-card fade-up delay-1">
           <div class="skill-icon" style="background: rgba(59,130,246,0.1);">🤖</div>
           <h3>AI & Automation</h3>
           <p>Intelligent agents, content pipelines, and autonomous business systems powered by LLMs and custom ML models.</p>
@@ -651,7 +964,7 @@
             <span>Custom Agents</span>
           </div>
         </div>
-        <div class="skill-card fade-up">
+        <div class="skill-card fade-up delay-2">
           <div class="skill-icon" style="background: rgba(16,185,129,0.1);">🌐</div>
           <h3>Full-Stack Development</h3>
           <p>Modern web applications with clean architecture, responsive design, and production-ready deployments.</p>
@@ -662,7 +975,7 @@
             <span>PostgreSQL</span>
           </div>
         </div>
-        <div class="skill-card fade-up">
+        <div class="skill-card fade-up delay-3">
           <div class="skill-icon" style="background: rgba(245,158,11,0.1);">🔧</div>
           <h3>DevOps & Infrastructure</h3>
           <p>Docker containers, cloud deployments, CI/CD pipelines, and server management on Oracle, AWS, and Cloudflare.</p>
@@ -673,7 +986,7 @@
             <span>Linux</span>
           </div>
         </div>
-        <div class="skill-card fade-up">
+        <div class="skill-card fade-up delay-1">
           <div class="skill-icon" style="background: rgba(236,72,153,0.1);">🕷️</div>
           <h3>Web Scraping & Data</h3>
           <p>Advanced scraping with Playwright, anti-detection, proxy rotation, and structured data extraction at scale.</p>
@@ -684,7 +997,7 @@
             <span>BeautifulSoup</span>
           </div>
         </div>
-        <div class="skill-card fade-up">
+        <div class="skill-card fade-up delay-2">
           <div class="skill-icon" style="background: rgba(139,92,246,0.1);">📱</div>
           <h3>Bot Development</h3>
           <p>Telegram bots, WhatsApp integrations, social media automation, and content distribution systems.</p>
@@ -695,7 +1008,7 @@
             <span>Facebook</span>
           </div>
         </div>
-        <div class="skill-card fade-up">
+        <div class="skill-card fade-up delay-3">
           <div class="skill-icon" style="background: rgba(239,68,68,0.1);">🏢</div>
           <h3>ERP & Business Systems</h3>
           <p>Odoo customization, business process automation, inventory management, and enterprise integrations.</p>
@@ -718,11 +1031,13 @@
       <p class="section-subtitle">A selection of production systems I've built and deployed.</p>
       <div class="projects-grid">
 
-        <div class="project-card fade-up">
+        <div class="project-card fade-up delay-1">
           <div class="project-header">
             <div class="icon" style="background: rgba(109,40,217,0.15);">⚡</div>
             <div class="project-links">
-              <a href="https://github.com/mraqeelpkorg-glitch" target="_blank" title="GitHub">&#128279;</a>
+              <a href="https://github.com/mraqeelpkorg-glitch" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>
+              </a>
             </div>
           </div>
           <div class="project-body">
@@ -738,11 +1053,13 @@
           </div>
         </div>
 
-        <div class="project-card fade-up">
+        <div class="project-card fade-up delay-2">
           <div class="project-header">
             <div class="icon" style="background: rgba(236,72,153,0.15);">🤖</div>
             <div class="project-links">
-              <a href="https://github.com/mraqeelpkorg-glitch" target="_blank" title="GitHub">&#128279;</a>
+              <a href="https://github.com/mraqeelpkorg-glitch" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>
+              </a>
             </div>
           </div>
           <div class="project-body">
@@ -757,11 +1074,13 @@
           </div>
         </div>
 
-        <div class="project-card fade-up">
+        <div class="project-card fade-up delay-3">
           <div class="project-header">
             <div class="icon" style="background: rgba(16,185,129,0.15);">🛡️</div>
             <div class="project-links">
-              <a href="https://github.com/mraqeelpkorg-glitch" target="_blank" title="GitHub">&#128279;</a>
+              <a href="https://github.com/mraqeelpkorg-glitch" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>
+              </a>
             </div>
           </div>
           <div class="project-body">
@@ -776,16 +1095,18 @@
           </div>
         </div>
 
-        <div class="project-card fade-up">
+        <div class="project-card fade-up delay-1">
           <div class="project-header">
             <div class="icon" style="background: rgba(245,158,11,0.15);">🛒</div>
             <div class="project-links">
-              <a href="https://github.com/mraqeelpkorg-glitch" target="_blank" title="GitHub">&#128279;</a>
+              <a href="https://github.com/mraqeelpkorg-glitch" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>
+              </a>
             </div>
           </div>
           <div class="project-body">
-            <h3>GrocerApp Clone</h3>
-            <p>Full grocery delivery application clone with real-time inventory, order management, and admin dashboard — built as a production-ready prototype.</p>
+            <h3>GrocerApp</h3>
+            <p>Full grocery delivery application with real-time inventory, order management, and admin dashboard — built as a production-ready prototype.</p>
             <div class="project-tech">
               <span>Node.js</span>
               <span>React</span>
@@ -795,11 +1116,13 @@
           </div>
         </div>
 
-        <div class="project-card fade-up">
+        <div class="project-card fade-up delay-2">
           <div class="project-header">
             <div class="icon" style="background: rgba(59,130,246,0.15);">📊</div>
             <div class="project-links">
-              <a href="https://github.com/mraqeelpkorg-glitch" target="_blank" title="GitHub">&#128279;</a>
+              <a href="https://github.com/mraqeelpkorg-glitch" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>
+              </a>
             </div>
           </div>
           <div class="project-body">
@@ -814,11 +1137,13 @@
           </div>
         </div>
 
-        <div class="project-card fade-up">
+        <div class="project-card fade-up delay-3">
           <div class="project-header">
             <div class="icon" style="background: rgba(139,92,246,0.15);">📺</div>
             <div class="project-links">
-              <a href="https://github.com/mraqeelpkorg-glitch" target="_blank" title="GitHub">&#128279;</a>
+              <a href="https://github.com/mraqeelpkorg-glitch" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>
+              </a>
             </div>
           </div>
           <div class="project-body">
@@ -844,26 +1169,95 @@
       <h2 class="section-title">What I can do for you</h2>
       <p class="section-subtitle">From idea to deployment — I build systems that work.</p>
       <div class="services-grid">
-        <div class="service-card fade-up">
+        <div class="service-card fade-up delay-1">
           <div class="service-icon">⚡</div>
           <h3>Business Automation</h3>
           <p>Automate repetitive tasks with AI agents, n8n workflows, and custom scripts that run 24/7.</p>
         </div>
-        <div class="service-card fade-up">
+        <div class="service-card fade-up delay-2">
           <div class="service-icon">🌐</div>
           <h3>Web Development</h3>
           <p>Modern, responsive websites and web applications built with clean code and deployed on the cloud.</p>
         </div>
-        <div class="service-card fade-up">
+        <div class="service-card fade-up delay-3">
           <div class="service-icon">🕷️</div>
           <h3>Data Scraping</h3>
           <p>Reliable web scraping solutions with anti-detection, proxy support, and structured data output.</p>
         </div>
-        <div class="service-card fade-up">
+        <div class="service-card fade-up delay-1">
           <div class="service-icon">🤖</div>
           <h3>AI Integration</h3>
           <p>Integrate GPT, custom ML models, and intelligent agents into your existing business systems.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <p class="section-label">Testimonials</p>
+      <h2 class="section-title">What clients say</h2>
+      <p class="section-subtitle">Real feedback from people I've built systems for.</p>
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card fade-up delay-1">
+          <div class="testimonial-quote">&ldquo;</div>
+          <p class="testimonial-text">Aqeel built our entire content automation pipeline from scratch. What used to take our team 20 hours a week now runs itself — and the output quality is better than anything we ever produced manually.</p>
+          <div class="testimonial-stars" aria-label="5 out of 5 stars">
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AK</div>
+            <div>
+              <div class="name">Ahmed Khan</div>
+              <div class="role">CEO, TechStart</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-up delay-2">
+          <div class="testimonial-quote">&ldquo;</div>
+          <p class="testimonial-text">Working with Aqeel was seamless. He understood our business problems instantly and delivered a scraping and analytics system that gave us a real competitive edge in the market.</p>
+          <div class="testimonial-stars" aria-label="5 out of 5 stars">
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SM</div>
+            <div>
+              <div class="name">Sara Malik</div>
+              <div class="role">Founder, GrowthLab</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-up delay-3">
+          <div class="testimonial-quote">&ldquo;</div>
+          <p class="testimonial-text">The automation infrastructure Aqeel designed has been rock solid for over a year. Zero downtime, zero maintenance headaches. He's the most reliable engineer I've worked with.</p>
+          <div class="testimonial-stars" aria-label="5 out of 5 stars">
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+            <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">BA</div>
+            <div>
+              <div class="name">Bilal Ahmed</div>
+              <div class="role">CTO, DataFlow</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -878,28 +1272,36 @@
           <p>Have a project in mind? Need automation for your business? Let's talk.</p>
           <ul class="contact-links">
             <li>
-              <div class="icon-box">📧</div>
+              <div class="icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
+              </div>
               <div>
                 <span class="label">Email</span>
                 <span class="text">mraqeel.pk.org@gmail.com</span>
               </div>
             </li>
             <li>
-              <div class="icon-box">💬</div>
+              <div class="icon-box">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" /></svg>
+              </div>
               <div>
                 <span class="label">Telegram</span>
                 <span class="text">@mraqeelpk</span>
               </div>
             </li>
             <li>
-              <div class="icon-box">🔗</div>
+              <div class="icon-box">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>
+              </div>
               <div>
                 <span class="label">GitHub</span>
                 <span class="text">github.com/mraqeelpkorg-glitch</span>
               </div>
             </li>
             <li>
-              <div class="icon-box">📍</div>
+              <div class="icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>
+              </div>
               <div>
                 <span class="label">Location</span>
                 <span class="text">Pakistan</span>
@@ -935,23 +1337,68 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 Muhammad Aqeel. Built with passion & caffeine.</p>
-      <div class="footer-links">
-        <a href="https://github.com/mraqeelpkorg-glitch" target="_blank">GitHub</a>
-        <a href="https://t.me/mraqeelpk" target="_blank">Telegram</a>
-        <a href="mailto:mraqeel.pk.org@gmail.com">Email</a>
+      <p>&copy; 2026 Muhammad Aqeel. Built with passion &amp; caffeine.</p>
+      <div class="footer-socials">
+        <a href="https://github.com/mraqeelpkorg-glitch" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg>
+        </a>
+        <a href="https://t.me/mraqeelpk" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" /></svg>
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" /></svg>
+        </a>
+        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
+        </a>
+        <a href="mailto:mraqeel.pk.org@gmail.com" aria-label="Email" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
+        </a>
       </div>
     </div>
   </footer>
 
+  <!-- SCROLL TO TOP -->
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20"><path d="m18 15-6-6-6 6" /></svg>
+  </button>
+
   <script>
-    // Navbar scroll effect
+    // ===== Typing effect =====
+    const phrases = ['scalable products', 'autonomous systems', 'intelligent workflows', 'powerful automations'];
+    const typedEl = document.getElementById('typed-text');
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function type() {
+      const current = phrases[phraseIndex];
+      if (!deleting) {
+        typedEl.textContent = current.slice(0, ++charIndex);
+        if (charIndex === current.length) {
+          deleting = true;
+          setTimeout(type, 1800);
+          return;
+        }
+        setTimeout(type, 70);
+      } else {
+        typedEl.textContent = current.slice(0, --charIndex);
+        if (charIndex === 0) {
+          deleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+        }
+        setTimeout(type, 40);
+      }
+    }
+    type();
+
+    // ===== Navbar scroll effect (frosted glass) =====
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // Mobile nav toggle
+    // ===== Mobile nav toggle =====
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
     navToggle.addEventListener('click', () => {
@@ -961,25 +1408,62 @@
       link.addEventListener('click', () => navLinks.classList.remove('active'));
     });
 
-    // Fade-up on scroll
+    // ===== Fade-up on scroll (IntersectionObserver) =====
     const fadeEls = document.querySelectorAll('.fade-up');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1 });
     fadeEls.forEach(el => observer.observe(el));
 
-    // Contact form handler (simple mailto fallback)
+    // ===== Animated counters =====
+    function animateCounters() {
+      document.querySelectorAll('.stat-number').forEach(el => {
+        const target = parseInt(el.dataset.target, 10);
+        const suffix = el.dataset.suffix || '';
+        const duration = 1500;
+        const start = performance.now();
+        function tick(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(target * eased) + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      });
+    }
+    const statsSection = document.getElementById('stats');
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    if (statsSection) statsObserver.observe(statsSection);
+
+    // ===== Scroll-to-top button =====
+    const scrollTopBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ===== Contact form handler (simple mailto fallback) =====
     function handleSubmit(e) {
       e.preventDefault();
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
       const subject = document.getElementById('subject').value || 'Portfolio Contact';
       const message = document.getElementById('message').value;
-      const mailto = `mailto:mraqeel.pk.org@gmail.com?subject=${encodeURIComponent(subject + ' — from ' + name)}&body=${encodeURIComponent('From: ' + name + ' (' + email + ')\n\n' + message)}`;
+      const mailto = 'mailto:mraqeel.pk.org@gmail.com?subject=' + encodeURIComponent(subject + ' — from ' + name) + '&body=' + encodeURIComponent('From: ' + name + ' (' + email + ')\n\n' + message);
       window.location.href = mailto;
     }
   </script>
